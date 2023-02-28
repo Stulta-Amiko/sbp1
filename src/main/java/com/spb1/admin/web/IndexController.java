@@ -1,5 +1,6 @@
 package com.spb1.admin.web;
 
+import com.spb1.admin.config.auth.LoginUser;
 import com.spb1.admin.config.auth.dto.SessionUser;
 import com.spb1.admin.service.posts.PostsService;
 import com.spb1.admin.web.dto.PostsResponseDto;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpSession;
 
 @RequiredArgsConstructor
@@ -19,9 +21,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts",postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         if(user != null){
             model.addAttribute("userName",user.getName());
         }
