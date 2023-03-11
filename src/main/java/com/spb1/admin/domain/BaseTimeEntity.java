@@ -1,6 +1,5 @@
 package com.spb1.admin.domain;
 
-import jdk.vm.ci.meta.Local;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
